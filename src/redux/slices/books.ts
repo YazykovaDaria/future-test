@@ -2,26 +2,23 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import GoogleBook from 'src/types/book';
 
 type booksState = {
-  books: GoogleBook[];
+  book: GoogleBook | null;
 };
 
 const initialState: booksState = {
-  books: [],
+  book: null,
 };
 
 const booksSlice = createSlice({
-  name: 'books',
+  name: 'book',
   initialState,
   reducers: {
-    changeBooks(state, action: PayloadAction<GoogleBook[]>) {
-      state.books = action.payload;
-    },
-    addBooks(state, action: PayloadAction<GoogleBook[]>) {
-      state.books = [...state.books, ...action.payload];
+    setBook(state, action: PayloadAction<GoogleBook>) {
+      state.book = action.payload;
     },
   },
 });
 
-export const { changeBooks, addBooks } = booksSlice.actions;
+export const { setBook } = booksSlice.actions;
 
 export default booksSlice.reducer;

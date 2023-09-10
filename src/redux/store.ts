@@ -5,7 +5,7 @@ import { combineReducers, configureStore, PreloadedState } from '@reduxjs/toolki
 import { booksApi } from './slices/booksApi';
 
 const rootReducer = combineReducers({
-  books: booksReducer,
+  book: booksReducer,
   booksQueryData: booksQueryDataReducer,
   [booksApi.reducerPath]: booksApi.reducer,
 });

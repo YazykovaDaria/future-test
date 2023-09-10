@@ -6,7 +6,7 @@ import AppRouter from './Router';
 
 const App = () => {
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="lg">
       <Provider store={setupStore()}>
         <AppRouter></AppRouter>
       </Provider>

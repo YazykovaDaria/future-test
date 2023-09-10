@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BooksQueryData, Sorting, Filtering } from 'src/types/queryArguments';
+import { BooksQueryData } from 'src/types/queryArguments';
 
 const initialState: BooksQueryData = {
   search: '',
