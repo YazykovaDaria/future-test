@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { Typography, Box } from '@mui/material';
+import GoBackButton from 'src/components/GoBackBtn';
 
 function NotFound() {
   return (
@@ -18,9 +18,7 @@ function NotFound() {
         Sorry, page not found(
       </Typography>
 
-      <Typography align="center" variant="h6">
-        <NavLink to="/">Return to main page</NavLink>
-      </Typography>
+      <GoBackButton></GoBackButton>
     </Box>
   );
 }
