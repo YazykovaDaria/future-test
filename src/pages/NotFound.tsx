@@ -15,11 +15,11 @@ function NotFound() {
       }}
     >
       <Typography align="center" variant="h3">
-        Страница не найдена
+        Sorry, page not found(
       </Typography>
 
       <Typography align="center" variant="h6">
-        <NavLink to="/">Вернуться на главную</NavLink>
+        <NavLink to="/">Return to main page</NavLink>
       </Typography>
     </Box>
   );
