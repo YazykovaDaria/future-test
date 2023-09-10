@@ -5,6 +5,9 @@ import { CircularProgress, Box } from '@mui/material';
 function Skeleton() {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, []);
 
   return (
