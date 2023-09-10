@@ -2,11 +2,13 @@ import React from 'react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch } from 'src/hooks/reduxHook';
 import { setSearch } from 'src/redux/slices/booksQueryData';
+import { useNavigate } from 'react-router';
 
 import { TextField, Button, Box } from '@mui/material';
 
 function SearchForm() {
   const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -17,7 +19,7 @@ function SearchForm() {
     event.preventDefault();
     if (inputValue.length > 0) {
       dispatch(setSearch(inputValue));
-      console.log(inputValue);
+      navigate('/main');
     }
   };
 
