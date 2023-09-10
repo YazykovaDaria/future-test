@@ -15,7 +15,10 @@ function BookCard({ book }: Props) {
     <div onClick={handleClick}>
       <Card
         sx={{
-          maxWidth: 300,
+          width: {
+            xs: 200,
+            sm: 300,
+          },
           '&:hover': {
             transform: 'scale(1.1)',
             cursor: 'pointer',
