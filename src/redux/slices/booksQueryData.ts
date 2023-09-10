@@ -12,22 +12,21 @@ const booksQueryDataSlice = createSlice({
   name: 'booksQueryData',
   initialState,
   reducers: {
-    saveSearch(state, action: PayloadAction<string>) {
+    setSearch(state, action: PayloadAction<string>) {
       state.search = action.payload;
     },
-    changeSorting(state, action: PayloadAction<Sorting>) {
+    setSorting(state, action: PayloadAction<string>) {
       state.orderBy = action.payload;
     },
-    changeStartIndex(state, action: PayloadAction<number>) {
+    setStartIndex(state, action: PayloadAction<number>) {
       state.startIndex = action.payload;
     },
-    changeFilter(state, action: PayloadAction<Filtering>) {
+    setFiltering(state, action: PayloadAction<string>) {
       state.filtering = action.payload;
     },
   },
 });
 
-export const { saveSearch, changeSorting, changeStartIndex, changeFilter } =
-  booksQueryDataSlice.actions;
+export const { setSearch, setSorting, setStartIndex, setFiltering } = booksQueryDataSlice.actions;
 
 export default booksQueryDataSlice.reducer;
