@@ -1,52 +1,76 @@
 import React from 'react';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useAppDispatch } from 'src/hooks/reduxHook';
-import { setSearch } from 'src/redux/slices/booksQueryData';
-import { useNavigate } from 'react-router';
 
-import { TextField, Button, Box } from '@mui/material';
+import { TextField, Button, Box, Snackbar } from '@mui/material';
 
-function SearchForm() {
-  const [inputValue, setInputValue] = useState('');
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+type Props = {
+  label: string;
+  inputValue: string;
+  onSubmit: (data: string) => void;
+  errorValidateMessage?: string;
+};
+
+const defaultErrorMessage = 'Enter a search term or select a category';
+
+function SearchForm({
+  label,
+  inputValue,
+  onSubmit,
+  errorValidateMessage = defaultErrorMessage,
+}: Props) {
+  const [searchValue, setSearchValue] = useState<string>(inputValue);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (inputValue.length > 0) {
-      dispatch(setSearch(inputValue));
-      navigate('/main');
+    if (searchValue.trim().length > 0) {
+      onSubmit(searchValue);
+    } else {
+      setSnackbar(true);
+      setTimeout(() => setSnackbar(false), 3000);
     }
   };
 
+  const [isSnackbar, setSnackbar] = useState<boolean>(false);
+
+  const handleClose = () => setSnackbar(false);
+
   return (
-    <form onSubmit={handleSubmit}>
-      <Box
-        sx={{
-          display: 'flex',
-          gap: '1rem',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}
-      >
-        <TextField
-          label="Enter a search term"
-          variant="outlined"
-          value={inputValue}
-          size="medium"
-          autoFocus
-          onChange={handleInputChange}
-        />
-        <Button type="submit" variant="contained" color="primary" size="large">
-          Search
-        </Button>
-      </Box>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '1rem',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <TextField
+            label={label}
+            variant="outlined"
+            value={searchValue}
+            size="medium"
+            autoFocus
+            onChange={handleInputChange}
+          />
+          <Button type="submit" variant="contained" color="primary" size="large">
+            Search
+          </Button>
+        </Box>
+      </form>
+
+      <Snackbar
+        open={isSnackbar}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={errorValidateMessage}
+      />
+    </>
   );
 }
 
