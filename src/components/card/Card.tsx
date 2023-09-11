@@ -1,12 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
+import { useAppDispatch } from 'src/hooks/reduxHook';
+import { setBook } from 'src/redux/slices/books';
 import GoogleBook from 'src/types/book';
 import { Card, Box, CardContent, CardMedia, Typography } from '@mui/material';
 
 type Props = { book: GoogleBook };
 
 function BookCard({ book }: Props) {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    console.log(book);
+    dispatch(setBook(book));
+    navigate('/book');
   };
 
   const info = book.volumeInfo;
