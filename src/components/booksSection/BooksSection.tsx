@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { maxResults } from 'src/constants/constants';
 
 import { Button, Box } from '@mui/material';
-import BookCard from 'src/components/card/Card';
+import BookCard from './Card';
 import Skeleton from 'src/components/Skeleton';
 
 function BooksSection() {
