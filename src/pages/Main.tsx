@@ -1,18 +1,16 @@
 import React from 'react';
-import { useState } from 'react';
+import { useAppSelector } from 'src/hooks/reduxHook';
 
 import SearchSection from 'src/components/searchSection/SearchSection';
 import BooksSection from 'src/components/booksSection/BooksSection';
 
 function Main() {
-  const [isShowBooks, setShowBooks] = useState<boolean>(false);
-
-  const showBooks = () => setShowBooks(true);
+  const { showBooks } = useAppSelector((state) => state.book);
 
   return (
     <>
-      <SearchSection startSearch={showBooks}></SearchSection>
-      {isShowBooks && <BooksSection></BooksSection>}
+      <SearchSection></SearchSection>
+      {showBooks && <BooksSection></BooksSection>}
     </>
   );
 }

@@ -1,9 +1,9 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHook';
+import { setBooks } from 'src/redux/slices/books';
 import { useGetBooksQuery } from 'src/redux/slices/booksApi';
 import { setStartIndex } from 'src/redux/slices/booksQueryData';
-import GoogleBook from 'src/types/book';
 import { v4 as uuidv4 } from 'uuid';
 
 import { maxResults } from 'src/constants/constants';
@@ -31,18 +31,18 @@ function BooksSection() {
 
   const { data, isLoading, error, isFetching } = useGetBooksQuery(params);
 
-  const [books, setBooks] = useState<GoogleBook[]>([]);
+  const { books } = useAppSelector((state) => state.book);
 
   useEffect(() => {
     if (!data?.items || isFetching) {
       return;
     }
     if (!startIndex) {
-      setBooks(() => data?.items);
+      dispatch(setBooks(data?.items));
       return;
     }
-    setBooks(() => [...books, ...data.items]);
-  }, [data, startIndex, isFetching, filtering, orderBy]);
+    dispatch(setBooks([...books, ...data.items]));
+  }, [data, startIndex, isFetching, filtering, orderBy, dispatch]);
 
   useEffect(() => {
     dispatch(setStartIndex(0));

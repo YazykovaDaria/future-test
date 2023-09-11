@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAppSelector, useAppDispatch } from 'src/hooks/reduxHook';
 import { setSorting, setFiltering, setSearch } from 'src/redux/slices/booksQueryData';
+import { setShowBooks } from 'src/redux/slices/books';
 
 import { SelectChangeEvent } from '@mui/material/Select';
 import { Typography, Box, Grid } from '@mui/material';
@@ -8,17 +9,13 @@ import { Typography, Box, Grid } from '@mui/material';
 import SearchForm from './SearchForm';
 import SelectInput from './SelectInput';
 
-type Props = {
-  startSearch: () => void;
-};
-
-function SearchSection({ startSearch }: Props) {
+function SearchSection() {
   const dispatch = useAppDispatch();
   const { orderBy, filtering, search } = useAppSelector((state) => state.booksQueryData);
 
   const handleSearch = (data: string) => {
     dispatch(setSearch(data));
-    startSearch();
+    dispatch(setShowBooks(true));
   };
 
   const searchArguments = {
@@ -40,7 +37,7 @@ function SearchSection({ startSearch }: Props) {
 
   const handleFiltering = (event: SelectChangeEvent) => {
     dispatch(setFiltering(event.target.value));
-    startSearch();
+    dispatch(setShowBooks(true));
   };
 
   const filteringArguments = {
