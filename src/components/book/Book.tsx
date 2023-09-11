@@ -9,7 +9,6 @@ type Props = {
 
 function Book({ book }: Props) {
   const info = book.volumeInfo;
-  console.log(info);
 
   return (
     <Box
