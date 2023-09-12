@@ -12,4 +12,6 @@ MUI
 
 Eslint, Prettier, Husky
 
+Vitest, React testing library
+
 #### Example: https://stellar-sfogliatella-daa44b.netlify.app
