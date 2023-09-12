@@ -14,6 +14,7 @@ function SelectInput({ inputValue, title, onChange, values }: Props) {
     <div>
       <Typography>{title}</Typography>
       <Select
+        data-testid="select"
         sx={{ width: '200px' }}
         labelId="demo-simple-select-label"
         id="demo-simple-select"
