@@ -9,6 +9,7 @@ function BookCard({ book }: Props) {
 
   return (
     <Card
+      data-testid="card"
       sx={{
         width: {
           xs: 200,

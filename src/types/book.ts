@@ -14,29 +14,29 @@ export interface PanelizationSummary {
 }
 
 export interface ImageLinks {
-  smallThumbnail: string;
+  smallThumbnail?: string;
   thumbnail: string;
-  small: string;
-  medium: string;
-  large: string;
-  extraLarge: string;
+  small?: string;
+  medium?: string;
+  large?: string;
+  extraLarge?: string;
 }
 
 export interface VolumeInfo {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   authors: string[];
   publisher: string;
   publishedDate: string;
-  description: string;
+  description?: string;
   industryIdentifiers: IndustryIdentifier[];
   readingModes: ReadingModes;
   pageCount: number;
-  printedPageCount: number;
+  printedPageCount?: number;
   printType: string;
   categories: string[];
-  averageRating: number;
-  ratingsCount: number;
+  averageRating?: number;
+  ratingsCount?: number;
   maturityRating: string;
   allowAnonLogging: boolean;
   contentVersion: string;
@@ -123,7 +123,7 @@ export default interface GoogleBook {
   etag: string;
   selfLink: string;
   volumeInfo: VolumeInfo;
-  layerInfo: LayerInfo;
+  layerInfo?: LayerInfo;
   saleInfo: SaleInfo;
   accessInfo: AccessInfo;
 }
