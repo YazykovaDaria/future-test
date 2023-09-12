@@ -16,7 +16,7 @@ export default defineConfig({
       all: true,
       skipFull: true,
       reporter: ['text'],
-      exclude: [...configDefaults.coverage.exclude, 'src/types/*'],
+      exclude: [...configDefaults.coverage.exclude, 'src/types/*', 'src/tests/*'],
     },
   },
   resolve: {
