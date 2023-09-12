@@ -19,7 +19,7 @@ function Book({ book }: Props) {
         paddingY: '2rem',
       }}
     >
-      <Typography variant="h3" align="center">
+      <Typography sx={{ typography: { sm: 'h3', xs: 'h4' } }} align="center" fontWeight="bold">
         {info.title}
       </Typography>
 
@@ -39,11 +39,15 @@ function Book({ book }: Props) {
           sx={{
             width: {
               xs: 200,
+              sm: 300,
+            },
+            height: {
+              xs: 300,
               sm: 400,
             },
           }}
         >
-          <img src={info.imageLinks?.thumbnail || ''} alt={info.title} width="100%" />
+          <img src={info.imageLinks?.thumbnail || ''} alt={info.title} width="100%" height="100%" />
         </Box>
 
         <Box
