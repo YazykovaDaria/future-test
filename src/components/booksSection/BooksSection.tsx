@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/hooks/reduxHook';
-import { setBooks } from 'src/redux/slices/books';
+import { setBooks, setBook } from 'src/redux/slices/books';
 import { useGetBooksQuery } from 'src/redux/slices/booksApi';
 import { setStartIndex } from 'src/redux/slices/booksQueryData';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,6 +12,7 @@ import { maxResults } from 'src/constants/constants';
 import { Button, Box } from '@mui/material';
 import BookCard from './Card';
 import Skeleton from 'src/components/Skeleton';
+import GoogleBook from 'src/types/book';
 
 function BooksSection() {
   const { search, orderBy, startIndex, filtering } = useAppSelector(
@@ -48,6 +50,13 @@ function BooksSection() {
     dispatch(setStartIndex(0));
   }, [search, orderBy, filtering, dispatch]);
 
+  const navigate = useNavigate();
+
+  const handleBookClick = (book: GoogleBook) => {
+    dispatch(setBook(book));
+    navigate('/book');
+  };
+
   return (
     <section>
       <div>
@@ -81,7 +90,11 @@ function BooksSection() {
         >
           {books &&
             books.map((item) => {
-              return <BookCard book={item} key={item.id + uuidv4()}></BookCard>;
+              return (
+                <div key={item.id + uuidv4()} onClick={() => handleBookClick(item)}>
+                  <BookCard book={item}></BookCard>
+                </div>
+              );
             })}
         </Box>
 
