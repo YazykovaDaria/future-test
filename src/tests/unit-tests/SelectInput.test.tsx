@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, screen, getByRole, act } from '@testing-library/react';
+import { render, waitFor, screen, getByRole } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
 
