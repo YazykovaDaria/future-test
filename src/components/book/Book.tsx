@@ -12,6 +12,7 @@ function Book({ book }: Props) {
 
   return (
     <Box
+      data-testid="book"
       sx={{
         display: 'flex',
         flexDirection: 'column',
